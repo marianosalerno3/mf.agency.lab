@@ -476,6 +476,45 @@ window.Servizi = Servizi;
 /* --- block 7 --- */
 (function(){
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function Reel({
+  src,
+  poster
+}) {
+  const Play = window.Play;
+  const [play, setPlay] = React.useState(false);
+  return /*#__PURE__*/React.createElement("div", {
+    className: "relative rounded-xl overflow-hidden bg-green/5 aspect-[9/16]"
+  }, play ? /*#__PURE__*/React.createElement("video", {
+    src: src,
+    poster: poster,
+    className: "w-full h-full object-cover",
+    autoPlay: true,
+    muted: true,
+    loop: true,
+    playsInline: true,
+    controls: true
+  }) : /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    onClick: () => setPlay(true),
+    "aria-label": "Riproduci video",
+    className: "group block w-full h-full"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: poster,
+    alt: "",
+    loading: "lazy",
+    className: "w-full h-full object-cover"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "absolute inset-0 flex items-center justify-center bg-green/10 group-hover:bg-green/0 transition-colors"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "glass rounded-full flex items-center justify-center",
+    style: {
+      width: 48,
+      height: 48
+    }
+  }, /*#__PURE__*/React.createElement(Play, {
+    className: "h-4 w-4 text-green ml-0.5"
+  })))));
+}
 function CasiStudio() {
   const motion = window.Motion.motion;
   const {
@@ -492,7 +531,7 @@ function CasiStudio() {
     sector: "Brand",
     desc: "Produzione video on-site presso l'azienda e gestione marketing completa sui canali social.",
     services: ["Produzione Video", "Social Media", "Advertising"],
-    real: true
+    videos: ["valentinario-1", "valentinario-2", "valentinario-3"]
   }, {
     title: "Napolitano Rooms",
     handle: "@napolitanorooms",
@@ -501,7 +540,7 @@ function CasiStudio() {
     sector: "Hospitality",
     desc: "Attività ricettiva: produzione video on-site della struttura e gestione marketing completa.",
     services: ["Produzione Video", "Social Media", "Advertising"],
-    real: true
+    videos: ["napolitano-1", "napolitano-2", "napolitano-3"]
   }, {
     title: "Oltretempo",
     handle: "@oltretempo.it",
@@ -510,9 +549,11 @@ function CasiStudio() {
     sector: "Brand",
     desc: "Produzione video on-site presso l'azienda e gestione marketing completa sui canali social.",
     services: ["Produzione Video", "Social Media", "Advertising"],
-    real: true
+    videos: []
   }];
-  const card = {
+  const featured = cases.filter(c => c.videos.length > 0);
+  const others = cases.filter(c => c.videos.length === 0);
+  const reveal = {
     initial: {
       opacity: 0,
       y: 30
@@ -523,9 +564,36 @@ function CasiStudio() {
     },
     viewport: {
       once: true,
-      amount: 0.3
+      amount: 0.2
     }
   };
+  const Info = c => /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+    className: "glass rounded-full inline-flex items-center gap-1.5 px-3 py-1 text-[11px] font-medium text-green/80"
+  }, /*#__PURE__*/React.createElement(IconMapPin, {
+    className: "h-3.5 w-3.5"
+  }), " ", c.place), /*#__PURE__*/React.createElement("div", {
+    className: "text-xs font-medium text-greenlt mt-4 mb-1"
+  }, c.sector), /*#__PURE__*/React.createElement("h3", {
+    className: "font-heading font-semibold text-4xl md:text-5xl tracking-tight leading-none"
+  }, c.title), /*#__PURE__*/React.createElement("span", {
+    className: "text-sm text-green/60 font-light"
+  }, c.handle), /*#__PURE__*/React.createElement("p", {
+    className: "text-sm md:text-base text-green/70 font-light leading-relaxed mt-4 max-w-md"
+  }, c.desc), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2 mt-5"
+  }, c.services.map(s => /*#__PURE__*/React.createElement("span", {
+    key: s,
+    className: "glass rounded-full px-3 py-1 text-[11px] text-green/80 font-medium"
+  }, s))), /*#__PURE__*/React.createElement("a", {
+    href: c.href,
+    target: "_blank",
+    rel: "noopener",
+    className: "group inline-flex items-center gap-1.5 text-sm font-semibold text-green mt-6 hover:opacity-70 transition-opacity"
+  }, /*#__PURE__*/React.createElement(IconInstagram, {
+    className: "h-4 w-4"
+  }), " Vedi su Instagram", /*#__PURE__*/React.createElement(ArrowUpRight, {
+    className: "h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+  })));
   return /*#__PURE__*/React.createElement("section", {
     id: "casi-studio",
     className: "bg-cream text-green py-24 md:py-32 px-6 md:px-12"
@@ -544,53 +612,58 @@ function CasiStudio() {
   }, "Vuoi essere il prossimo? ", /*#__PURE__*/React.createElement(ArrowUpRight, {
     className: "h-4 w-4"
   }))), /*#__PURE__*/React.createElement("div", {
-    className: "grid grid-cols-1 md:grid-cols-3 gap-6"
-  }, cases.map((c, i) => {
-    const Wrapper = c.href ? motion.a : motion.div;
-    const linkProps = c.href ? {
-      href: c.href,
-      target: "_blank",
-      rel: "noopener"
-    } : {};
-    return /*#__PURE__*/React.createElement(Wrapper, _extends({
-      key: c.title
-    }, linkProps, card, {
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-        delay: i * 0.12
-      },
-      className: "group bg-creamlt border border-green/10 rounded-[1.5rem] p-7 flex flex-col min-h-[320px] " + (c.href ? "hover:border-green/30 hover:-translate-y-1 transition-all" : "")
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "flex items-center justify-between mb-6"
-    }, /*#__PURE__*/React.createElement("span", {
-      className: "glass rounded-full inline-flex items-center gap-1.5 px-3 py-1 text-[11px] font-medium text-green/80"
-    }, /*#__PURE__*/React.createElement(IconMapPin, {
-      className: "h-3.5 w-3.5"
-    }), " ", c.place), c.real ? /*#__PURE__*/React.createElement(IconInstagram, {
-      className: "h-5 w-5 text-green/70 group-hover:text-green transition-colors"
-    }) : /*#__PURE__*/React.createElement("span", {
-      className: "text-[10px] font-medium text-green/40 uppercase tracking-wider"
-    }, "Esempio")), /*#__PURE__*/React.createElement("span", {
-      className: "text-xs font-medium text-greenlt mb-2"
-    }, c.sector), /*#__PURE__*/React.createElement("h3", {
-      className: "font-heading font-semibold text-3xl tracking-tight leading-none"
-    }, c.title), c.handle && /*#__PURE__*/React.createElement("span", {
-      className: "text-sm text-green/60 font-light mt-1"
-    }, c.handle), /*#__PURE__*/React.createElement("p", {
-      className: "text-sm text-green/70 font-light leading-relaxed mt-4 flex-1"
-    }, c.desc), /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-wrap gap-2 mt-5"
-    }, c.services.map(s => /*#__PURE__*/React.createElement("span", {
-      key: s,
-      className: "glass rounded-full px-3 py-1 text-[11px] text-green/80 font-medium"
-    }, s))), c.href && /*#__PURE__*/React.createElement("span", {
-      className: "inline-flex items-center gap-1.5 text-sm font-semibold text-green mt-6"
-    }, "Vedi su Instagram ", /*#__PURE__*/React.createElement(ArrowUpRight, {
-      className: "h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-    })));
-  })), /*#__PURE__*/React.createElement("p", {
-    className: "text-xs text-green/40 mt-6"
+    className: "flex flex-col gap-20"
+  }, featured.map((c, i) => /*#__PURE__*/React.createElement(motion.div, _extends({
+    key: c.title
+  }, reveal, {
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    },
+    className: "grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: i % 2 === 1 ? "lg:order-2" : ""
+  }, Info(c)), /*#__PURE__*/React.createElement("div", {
+    className: "grid grid-cols-3 gap-3 sm:gap-4 " + (i % 2 === 1 ? "lg:order-1" : "")
+  }, c.videos.map(v => /*#__PURE__*/React.createElement(Reel, {
+    key: v,
+    src: "media/" + v + ".mp4",
+    poster: "media/" + v + ".jpg"
+  })))))), others.length > 0 && /*#__PURE__*/React.createElement("div", {
+    className: "grid grid-cols-1 md:grid-cols-3 gap-6 mt-20"
+  }, others.map(c => /*#__PURE__*/React.createElement(motion.div, _extends({
+    key: c.title
+  }, reveal, {
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    },
+    className: "bg-creamlt border border-green/10 rounded-[1.5rem] p-7 flex flex-col"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center justify-between mb-6"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "glass rounded-full inline-flex items-center gap-1.5 px-3 py-1 text-[11px] font-medium text-green/80"
+  }, /*#__PURE__*/React.createElement(IconMapPin, {
+    className: "h-3.5 w-3.5"
+  }), " ", c.place), /*#__PURE__*/React.createElement(IconInstagram, {
+    className: "h-5 w-5 text-green/70"
+  })), /*#__PURE__*/React.createElement("span", {
+    className: "text-xs font-medium text-greenlt mb-2"
+  }, c.sector), /*#__PURE__*/React.createElement("h3", {
+    className: "font-heading font-semibold text-3xl tracking-tight leading-none"
+  }, c.title), /*#__PURE__*/React.createElement("span", {
+    className: "text-sm text-green/60 font-light mt-1"
+  }, c.handle), /*#__PURE__*/React.createElement("p", {
+    className: "text-sm text-green/70 font-light leading-relaxed mt-4 flex-1"
+  }, c.desc), /*#__PURE__*/React.createElement("a", {
+    href: c.href,
+    target: "_blank",
+    rel: "noopener",
+    className: "group inline-flex items-center gap-1.5 text-sm font-semibold text-green mt-6 hover:opacity-70 transition-opacity"
+  }, "Vedi su Instagram", /*#__PURE__*/React.createElement(ArrowUpRight, {
+    className: "h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+  }))))), /*#__PURE__*/React.createElement("p", {
+    className: "text-xs text-green/40 mt-10"
   }, "Alcuni dei brand che hanno scelto MF Agency Lab.")));
 }
 window.CasiStudio = CasiStudio;
