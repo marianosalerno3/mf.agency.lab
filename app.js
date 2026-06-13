@@ -736,6 +736,11 @@ function Contatti() {
   const upd = k => e => setForm(Object.assign({}, form, {
     [k]: e.target.type === "checkbox" ? e.target.checked : e.target.value
   }));
+
+  // Meta Pixel: invio eventi in modo sicuro (no-op se il pixel è bloccato)
+  const track = (event, params) => {
+    if (typeof window.fbq === "function") window.fbq("track", event, params || {});
+  };
   const summary = () => `Nome: ${form.name}\nEmail: ${form.email}\nTelefono: ${form.phone || "-"}\nServizio: ${form.servizio}\n\nMessaggio:\n${form.message}`;
   async function handleSubmit(e) {
     e.preventDefault();
@@ -764,6 +769,9 @@ function Contatti() {
         if (data.success) {
           setStatus("success");
           setForm(empty);
+          track("Lead", {
+            content_name: form.servizio
+          });
         } else setStatus("error");
       } catch (err) {
         setStatus("error");
@@ -773,11 +781,17 @@ function Contatti() {
       const subject = encodeURIComponent(`Richiesta informazioni — ${form.servizio}`);
       const body = encodeURIComponent(summary());
       window.location.href = `mailto:mf.agency.lab@gmail.com?subject=${subject}&body=${body}`;
+      track("Lead", {
+        content_name: form.servizio
+      });
       setStatus("success");
     }
   }
   function handleWhatsApp() {
     const text = encodeURIComponent(`Ciao MF Agency Lab! Sono ${form.name || "..."}. Vorrei informazioni su: ${form.servizio}.` + (form.message ? `\n\n${form.message}` : ""));
+    track("Contact", {
+      method: "whatsapp"
+    });
     window.open(`https://wa.me/393487313525?text=${text}`, "_blank", "noopener");
   }
   const inputCls = "w-full bg-creamlt border border-green/15 rounded-xl px-4 py-3 text-sm text-green placeholder-green/40 outline-none focus:border-green/50 focus:ring-2 focus:ring-green/10 transition";
@@ -798,6 +812,9 @@ function Contatti() {
     href: "https://wa.me/393487313525",
     target: "_blank",
     rel: "noopener",
+    onClick: () => track("Contact", {
+      method: "whatsapp"
+    }),
     className: "inline-flex items-center gap-2 text-sm font-semibold text-green hover:opacity-70 transition-opacity"
   }, "WhatsApp \xB7 348 731 3525 ", /*#__PURE__*/React.createElement(ArrowUpRight, {
     className: "h-4 w-4"

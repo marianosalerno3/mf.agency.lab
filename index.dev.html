@@ -544,6 +544,9 @@
       const [status, setStatus] = React.useState("idle"); // idle | sending | success | error
       const upd = (k) => (e) => setForm(Object.assign({}, form, { [k]: e.target.type === "checkbox" ? e.target.checked : e.target.value }));
 
+      // Meta Pixel: invio eventi in modo sicuro (no-op se il pixel è bloccato)
+      const track = (event, params) => { if (typeof window.fbq === "function") window.fbq("track", event, params || {}); };
+
       const summary = () =>
         `Nome: ${form.name}\nEmail: ${form.email}\nTelefono: ${form.phone || "-"}\nServizio: ${form.servizio}\n\nMessaggio:\n${form.message}`;
 
@@ -568,7 +571,7 @@
               }),
             });
             const data = await res.json();
-            if (data.success) { setStatus("success"); setForm(empty); }
+            if (data.success) { setStatus("success"); setForm(empty); track("Lead", { content_name: form.servizio }); }
             else setStatus("error");
           } catch (err) { setStatus("error"); }
         } else {
@@ -576,6 +579,7 @@
           const subject = encodeURIComponent(`Richiesta informazioni — ${form.servizio}`);
           const body = encodeURIComponent(summary());
           window.location.href = `mailto:mf.agency.lab@gmail.com?subject=${subject}&body=${body}`;
+          track("Lead", { content_name: form.servizio });
           setStatus("success");
         }
       }
@@ -585,6 +589,7 @@
           `Ciao MF Agency Lab! Sono ${form.name || "..."}. Vorrei informazioni su: ${form.servizio}.` +
           (form.message ? `\n\n${form.message}` : "")
         );
+        track("Contact", { method: "whatsapp" });
         window.open(`https://wa.me/393487313525?text=${text}`, "_blank", "noopener");
       }
 
@@ -604,7 +609,7 @@
                   Compila il form per ricevere informazioni sui nostri servizi: produzione contenuti, siti web e gestione pubblicitaria. Ti rispondiamo entro 24 ore.
                 </p>
                 <div className="flex flex-col gap-3 mt-8">
-                  <a href="https://wa.me/393487313525" target="_blank" rel="noopener" className="inline-flex items-center gap-2 text-sm font-semibold text-green hover:opacity-70 transition-opacity">
+                  <a href="https://wa.me/393487313525" target="_blank" rel="noopener" onClick={() => track("Contact", { method: "whatsapp" })} className="inline-flex items-center gap-2 text-sm font-semibold text-green hover:opacity-70 transition-opacity">
                     WhatsApp · 348 731 3525 <ArrowUpRight className="h-4 w-4" />
                   </a>
                   <a href="tel:+393487313525" className="inline-flex items-center gap-2 text-sm font-semibold text-green hover:opacity-70 transition-opacity">
