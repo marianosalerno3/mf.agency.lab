@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flux — Creative Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Familjen+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#0b0b0d; --ink:#f7f5ef; --muted:#8a8a92; --a:#d6ff3f; --b:#ff4db8; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Familjen Grotesk',sans-serif;overflow-x:hidden}
+  h1,h2,h3,.dsp{font-family:'Sora',sans-serif;letter-spacing:-.03em}
+  #net{position:fixed;inset:0;z-index:0;opacity:.55}
+  .blob{position:fixed;border-radius:50%;filter:blur(90px);z-index:0;opacity:.5;animation:float 14s ease-in-out infinite}
+  .blob.a{width:460px;height:460px;background:#d6ff3f;top:-120px;left:-80px}
+  .blob.b{width:520px;height:520px;background:#7b5bff;bottom:-160px;right:-120px;animation-delay:-6s}
+  @keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-30px) scale(1.1)}}
+  .wrap{position:relative;z-index:1}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:24px 30px}
+  .logo{font-family:'Sora';font-weight:800;font-size:20px}
+  nav a{color:var(--ink);text-decoration:none;font-size:14px;margin-left:24px}
+  .btn{border:1px solid var(--ink);padding:10px 18px;border-radius:999px;font-weight:600;font-size:14px;text-decoration:none;color:var(--ink);transition:.25s}
+  .btn:hover{background:var(--a);border-color:var(--a);color:#0b0b0d}
+  header{padding:60px 30px 40px;min-height:84vh;display:flex;flex-direction:column;justify-content:center}
+  header h1{font-size:clamp(50px,13vw,180px);line-height:.85;font-weight:800;text-transform:uppercase}
+  header h1 em{font-style:italic;font-weight:600;color:var(--a)}
+  header .lead{color:var(--muted);max-width:520px;font-size:clamp(16px,1.7vw,20px);margin-top:30px;line-height:1.6}
+  .marquee{border-top:1px solid #26262b;border-bottom:1px solid #26262b;overflow:hidden;white-space:nowrap;padding:18px 0;margin-top:50px}
+  .marquee span{display:inline-block;font-family:'Sora';font-weight:700;font-size:clamp(22px,3vw,40px);animation:scroll 22s linear infinite;text-transform:uppercase}
+  .marquee span b{color:var(--a);-webkit-text-stroke:0}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  section{padding:90px 30px;max-width:1160px;margin:0 auto}
+  .klabel{color:var(--a);font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px}
+  .sec-h{font-size:clamp(30px,5vw,58px);font-weight:700;max-width:720px;line-height:1.03}
+  .work{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:46px}
+  .tile{border-radius:20px;padding:30px;min-height:230px;display:flex;flex-direction:column;justify-content:space-between;color:#0b0b0d;text-decoration:none;transition:transform .3s}
+  .tile:hover{transform:translateY(-6px)}
+  .tile h3{font-size:26px;font-weight:700}
+  .tile span{font-size:13px;opacity:.7}
+  .t1{background:linear-gradient(135deg,#d6ff3f,#a6e21a)}
+  .t2{background:linear-gradient(135deg,#ff8fd6,#ff4db8)}
+  .t3{background:linear-gradient(135deg,#9b8cff,#6c4dff);color:#fff}
+  .reveal{opacity:0;transform:translateY(28px);transition:.7s}
+  .reveal.in{opacity:1;transform:none}
+  .band{text-align:center;padding:90px 30px}
+  .band h2{font-size:clamp(36px,7vw,90px);font-weight:800;text-transform:uppercase;line-height:.9}
+  footer{border-top:1px solid #26262b;padding:30px;display:flex;justify-content:space-between;color:var(--muted);font-size:13px;flex-wrap:wrap;gap:10px}
+  .credit{position:fixed;right:14px;bottom:12px;z-index:10;font-size:11px;color:var(--muted);background:rgba(0,0,0,.4);padding:6px 11px;border-radius:999px;text-decoration:none;border:1px solid #26262b}
+</style>
+</head>
+<body>
+<div class="blob a"></div><div class="blob b"></div>
+<canvas id="net"></canvas>
+<div class="wrap">
+  <nav>
+    <span class="logo">✸ FLUX</span>
+    <div><a href="#lavori">Lavori</a><a href="#contatti" class="btn" style="margin-left:24px">Contatti</a></div>
+  </nav>
+  <header>
+    <h1>Idee<br/>in <em>movimento</em></h1>
+    <p class="lead">Creative studio per brand coraggiosi. Strategia, art direction e contenuti che fanno girare la testa.</p>
+  </header>
+  <div class="marquee"><span>BRANDING · MOTION · SOCIAL · WEB · 3D · BRANDING · MOTION · SOCIAL · WEB · 3D · <b>BRANDING · MOTION · SOCIAL · WEB · 3D ·</b> BRANDING · MOTION · SOCIAL · WEB · 3D · </span></div>
+
+  <section id="lavori">
+    <div class="reveal"><div class="klabel">Selezione lavori</div><h2 class="sec-h">Progetti che si muovono.</h2></div>
+    <div class="work reveal">
+      <a href="#" class="tile t1"><span>2026 · Branding</span><h3>Pulse Energy</h3></a>
+      <a href="#" class="tile t2"><span>2026 · Social</span><h3>Bloom Beauty</h3></a>
+      <a href="#" class="tile t3"><span>2025 · Web 3D</span><h3>Nimbus App</h3></a>
+    </div>
+  </section>
+
+  <div class="band reveal" id="contatti">
+    <h2>Facciamo<br/>scintille.</h2>
+    <a href="#" class="btn" style="margin-top:30px;display:inline-block">Scrivici →</a>
+  </div>
+
+  <footer>
+    <span>Flux Creative Studio — 2026</span>
+    <span>Sito demo realizzato da MF Agency Lab</span>
+  </footer>
+</div>
+<a class="credit" href="../siti-web.html">◀ Demo · MF Agency Lab</a>
+
+<script>
+// Rete di particelle su canvas
+const cv = document.getElementById('net'), ctx = cv.getContext('2d');
+let W,H,pts;
+function resize(){ W=cv.width=innerWidth; H=cv.height=innerHeight; const n=Math.min(90,Math.floor(W*H/18000));
+  pts=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5})); }
+resize(); addEventListener('resize',resize);
+let mouse={x:-999,y:-999};
+addEventListener('pointermove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+function tick(){
+  ctx.clearRect(0,0,W,H);
+  for(const p of pts){ p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1; }
+  for(let i=0;i<pts.length;i++){
+    for(let j=i+1;j<pts.length;j++){
+      const a=pts[i],b=pts[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);
+      if(d<130){ ctx.strokeStyle=`rgba(214,255,63,${(1-d/130)*.5})`; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+    }
+    const a=pts[i], dm=Math.hypot(a.x-mouse.x,a.y-mouse.y);
+    if(dm<170){ ctx.strokeStyle=`rgba(123,91,255,${(1-dm/170)*.6})`; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(mouse.x,mouse.y); ctx.stroke(); }
+    ctx.fillStyle='rgba(247,245,239,.8)'; ctx.beginPath(); ctx.arc(a.x,a.y,1.6,0,7); ctx.fill();
+  }
+  requestAnimationFrame(tick);
+}
+tick();
+const io = new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

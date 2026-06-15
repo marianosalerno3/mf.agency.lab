@@ -282,7 +282,7 @@ window.Logo = Logo;
 function Navbar() {
   const ArrowUpRight = window.ArrowUpRight;
   const Logo = window.Logo;
-  const links = [["Servizi", "#servizi"], ["Casi Studio", "#casi-studio"], ["Approccio", "#approccio"], ["Contatti", "#contatti"]];
+  const links = [["Servizi", "#servizi"], ["Casi Studio", "#casi-studio"], ["Siti Web", "siti-web.html"], ["Approccio", "#approccio"], ["Contatti", "#contatti"]];
   return /*#__PURE__*/React.createElement("nav", {
     className: "absolute top-5 left-0 right-0 z-50 px-6 md:px-12"
   }, /*#__PURE__*/React.createElement("div", {
@@ -398,7 +398,8 @@ function Servizi() {
     BlurText,
     IconCamera,
     IconCode,
-    IconMegaphone
+    IconMegaphone,
+    ArrowUpRight
   } = window;
   const services = [{
     Icon: IconCamera,
@@ -408,8 +409,9 @@ function Servizi() {
   }, {
     Icon: IconCode,
     title: "Siti Web",
-    desc: "Progettiamo e sviluppiamo siti web su misura: veloci, responsive e ottimizzati per la conversione. Dal landing page all'e-commerce.",
-    tags: ["Design", "Sviluppo", "SEO"]
+    desc: "Progettiamo e sviluppiamo siti web su misura: veloci, responsive e ottimizzati per la conversione. Dal landing page all'e-commerce, fino a esperienze 3D.",
+    tags: ["Design", "Sviluppo", "3D / WebGL"],
+    href: "siti-web.html"
   }, {
     Icon: IconMegaphone,
     title: "Gestione Pubblicitaria",
@@ -468,7 +470,12 @@ function Servizi() {
   }, s.tags.map(t => /*#__PURE__*/React.createElement("span", {
     key: t,
     className: "glass-on-dark rounded-full px-3 py-1 text-[11px] text-cream/90 font-medium"
-  }, t))))))));
+  }, t))), s.href && /*#__PURE__*/React.createElement("a", {
+    href: s.href,
+    className: "group inline-flex items-center gap-1.5 text-sm font-semibold text-cream mt-5 hover:opacity-80 transition-opacity"
+  }, "Guarda i progetti", /*#__PURE__*/React.createElement(ArrowUpRight, {
+    className: "h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+  })))))));
 }
 window.Servizi = Servizi;
 })();
