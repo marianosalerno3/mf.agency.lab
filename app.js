@@ -287,25 +287,27 @@ function Navbar() {
   return /*#__PURE__*/React.createElement("nav", {
     className: "absolute top-5 left-0 right-0 z-50 px-6 md:px-12"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "flex items-center justify-between"
+    className: "hidden md:flex items-center justify-between"
   }, /*#__PURE__*/React.createElement("a", {
     href: "#top"
   }, /*#__PURE__*/React.createElement(Logo, null)), /*#__PURE__*/React.createElement("div", {
-    className: "hidden md:flex items-center glass rounded-full px-2 py-2"
+    className: "flex items-center glass rounded-full px-2 py-2"
   }, links.map(([label, href]) => /*#__PURE__*/React.createElement("a", {
     key: label,
     href: href,
     className: "px-4 py-2 text-sm font-medium text-green/90 hover:text-green transition-colors"
   }, label))), /*#__PURE__*/React.createElement("a", {
     href: "#contatti",
-    className: "hidden md:inline-flex items-center gap-1.5 bg-green text-cream rounded-full px-5 py-2.5 text-sm font-semibold hover:bg-greenlt transition-colors whitespace-nowrap"
+    className: "inline-flex items-center gap-1.5 bg-green text-cream rounded-full px-5 py-2.5 text-sm font-semibold hover:bg-greenlt transition-colors whitespace-nowrap"
   }, "Lavora con noi ", /*#__PURE__*/React.createElement(ArrowUpRight, {
     className: "h-4 w-4"
-  })), /*#__PURE__*/React.createElement("button", {
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "md:hidden grid grid-cols-3 items-center"
+  }, /*#__PURE__*/React.createElement("button", {
     onClick: () => setOpen(o => !o),
     "aria-label": "Apri menu",
     "aria-expanded": open,
-    className: "md:hidden glass rounded-full p-3 text-green"
+    className: "justify-self-start glass rounded-full p-3 text-green"
   }, /*#__PURE__*/React.createElement("svg", {
     width: "20",
     height: "20",
@@ -324,7 +326,12 @@ function Navbar() {
     d: "M3 12h18"
   }), /*#__PURE__*/React.createElement("path", {
     d: "M3 18h18"
-  }))))), open && /*#__PURE__*/React.createElement("div", {
+  })))), /*#__PURE__*/React.createElement("a", {
+    href: "#top",
+    className: "justify-self-center"
+  }, /*#__PURE__*/React.createElement(Logo, null)), /*#__PURE__*/React.createElement("span", {
+    className: "justify-self-end"
+  })), open && /*#__PURE__*/React.createElement("div", {
     className: "md:hidden mt-3 rounded-2xl p-3 flex flex-col bg-cream border border-green/15 shadow-xl"
   }, links.map(([label, href]) => /*#__PURE__*/React.createElement("a", {
     key: label,
