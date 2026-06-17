@@ -282,6 +282,7 @@ window.Logo = Logo;
 function Navbar() {
   const ArrowUpRight = window.ArrowUpRight;
   const Logo = window.Logo;
+  const [open, setOpen] = React.useState(false);
   const links = [["Servizi", "#servizi"], ["Casi Studio", "#casi-studio"], ["Siti Web", "siti-web.html"], ["Approccio", "#approccio"], ["Contatti", "#contatti"]];
   return /*#__PURE__*/React.createElement("nav", {
     className: "absolute top-5 left-0 right-0 z-50 px-6 md:px-12"
@@ -297,7 +298,43 @@ function Navbar() {
     className: "px-4 py-2 text-sm font-medium text-green/90 hover:text-green transition-colors"
   }, label))), /*#__PURE__*/React.createElement("a", {
     href: "#contatti",
-    className: "hidden sm:inline-flex items-center gap-1.5 bg-green text-cream rounded-full px-5 py-2.5 text-sm font-semibold hover:bg-greenlt transition-colors whitespace-nowrap"
+    className: "hidden md:inline-flex items-center gap-1.5 bg-green text-cream rounded-full px-5 py-2.5 text-sm font-semibold hover:bg-greenlt transition-colors whitespace-nowrap"
+  }, "Lavora con noi ", /*#__PURE__*/React.createElement(ArrowUpRight, {
+    className: "h-4 w-4"
+  })), /*#__PURE__*/React.createElement("button", {
+    onClick: () => setOpen(o => !o),
+    "aria-label": "Apri menu",
+    "aria-expanded": open,
+    className: "md:hidden glass rounded-full p-3 text-green"
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "20",
+    height: "20",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round"
+  }, open ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+    d: "M6 6l12 12"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M18 6L6 18"
+  })) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+    d: "M3 6h18"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M3 12h18"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M3 18h18"
+  }))))), open && /*#__PURE__*/React.createElement("div", {
+    className: "md:hidden mt-3 rounded-2xl p-3 flex flex-col bg-cream border border-green/15 shadow-xl"
+  }, links.map(([label, href]) => /*#__PURE__*/React.createElement("a", {
+    key: label,
+    href: href,
+    onClick: () => setOpen(false),
+    className: "px-4 py-3 text-base font-medium text-green hover:bg-green/5 rounded-xl transition-colors"
+  }, label)), /*#__PURE__*/React.createElement("a", {
+    href: "#contatti",
+    onClick: () => setOpen(false),
+    className: "mt-2 inline-flex items-center justify-center gap-1.5 bg-green text-cream rounded-full px-5 py-3 text-sm font-semibold"
   }, "Lavora con noi ", /*#__PURE__*/React.createElement(ArrowUpRight, {
     className: "h-4 w-4"
   }))));

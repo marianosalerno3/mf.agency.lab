@@ -65,10 +65,36 @@
         <a href="/#servizi" class="px-4 py-2 text-sm font-medium text-green/90 hover:text-green transition-colors">Servizi</a>
         <a href="/#casi-studio" class="px-4 py-2 text-sm font-medium text-green/90 hover:text-green transition-colors">Casi Studio</a>
         <a href="siti-web.html" class="px-4 py-2 text-sm font-medium text-green transition-colors">Siti Web</a>
+        <a href="/#approccio" class="px-4 py-2 text-sm font-medium text-green/90 hover:text-green transition-colors">Approccio</a>
+        <a href="/#contatti" class="px-4 py-2 text-sm font-medium text-green/90 hover:text-green transition-colors">Contatti</a>
       </div>
-      <a href="/#contatti" class="hidden sm:inline-flex items-center gap-1.5 bg-green text-cream rounded-full px-5 py-2.5 text-sm font-semibold hover:bg-greenlt transition-colors">Lavora con noi</a>
+      <a href="/#contatti" class="hidden md:inline-flex items-center gap-1.5 bg-green text-cream rounded-full px-5 py-2.5 text-sm font-semibold hover:bg-greenlt transition-colors">Lavora con noi</a>
+      <button id="hamburger" aria-label="Apri menu" aria-expanded="false" class="md:hidden glass rounded-full p-3 text-green">
+        <svg id="hb-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden mt-3 rounded-2xl p-3 flex-col bg-cream border border-green/15 shadow-xl" style="display:none">
+      <a href="/#servizi" class="px-4 py-3 text-base font-medium text-green hover:bg-green/5 rounded-xl transition-colors">Servizi</a>
+      <a href="/#casi-studio" class="px-4 py-3 text-base font-medium text-green hover:bg-green/5 rounded-xl transition-colors">Casi Studio</a>
+      <a href="siti-web.html" class="px-4 py-3 text-base font-medium text-green hover:bg-green/5 rounded-xl transition-colors">Siti Web</a>
+      <a href="/#approccio" class="px-4 py-3 text-base font-medium text-green hover:bg-green/5 rounded-xl transition-colors">Approccio</a>
+      <a href="/#contatti" class="px-4 py-3 text-base font-medium text-green hover:bg-green/5 rounded-xl transition-colors">Contatti</a>
+      <a href="/#contatti" class="mt-2 inline-flex items-center justify-center gap-1.5 bg-green text-cream rounded-full px-5 py-3 text-sm font-semibold">Lavora con noi</a>
     </div>
   </nav>
+  <script>
+    (function(){
+      var btn = document.getElementById('hamburger');
+      var menu = document.getElementById('mobile-menu');
+      var icon = document.getElementById('hb-icon');
+      var openSvg = '<path d="M6 6l12 12"/><path d="M18 6L6 18"/>';
+      var barsSvg = '<path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/>';
+      var open = false;
+      function set(o){ open=o; menu.style.display = o ? 'flex' : 'none'; icon.innerHTML = o ? openSvg : barsSvg; btn.setAttribute('aria-expanded', o); }
+      btn.addEventListener('click', function(){ set(!open); });
+      menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ set(false); }); });
+    })();
+  </script>
 
   <!-- Hero -->
   <header class="px-6 md:px-12 pt-36 md:pt-44 pb-10 max-w-6xl mx-auto">
