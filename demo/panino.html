@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Panino Ribelle — Street Food</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#ffd23f; --ink:#1a1a1a; --red:#e63946; --cream:#fff6e6; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Archivo',sans-serif;overflow-x:hidden}
+  h1,h2,h3,.dsp{font-family:'Archivo Black',sans-serif;text-transform:uppercase;letter-spacing:-.01em}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:20px 28px}
+  .logo{font-family:'Archivo Black';font-size:22px}
+  .logo b{color:var(--red)}
+  nav a{color:var(--ink);text-decoration:none;font-weight:600;font-size:14px;margin-left:22px}
+  .btn{background:var(--ink);color:var(--bg);padding:12px 22px;border-radius:12px;font-weight:700;font-size:14px;text-decoration:none;display:inline-block;transition:transform .15s}
+  .btn:hover{transform:rotate(-2deg) scale(1.04)}
+  .btn.red{background:var(--red);color:#fff}
+  header{padding:40px 28px 30px;text-align:center}
+  header h1{font-size:clamp(60px,18vw,260px);line-height:.82;color:var(--ink)}
+  header h1 .o{color:var(--red);-webkit-text-stroke:2px var(--ink)}
+  .em{font-size:clamp(60px,14vw,120px);display:inline-block;animation:spin 6s ease-in-out infinite}
+  @keyframes spin{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+  header p{font-weight:600;font-size:clamp(16px,2vw,22px);max-width:540px;margin:20px auto 0}
+  .cta{margin-top:26px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .marquee{background:var(--ink);color:var(--bg);overflow:hidden;white-space:nowrap;padding:14px 0;margin-top:40px;transform:rotate(-1.5deg);border-top:4px solid var(--red);border-bottom:4px solid var(--red)}
+  .marquee span{display:inline-block;font-family:'Archivo Black';font-size:clamp(18px,3vw,30px);animation:scroll 18s linear infinite;text-transform:uppercase}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  section{max-width:1040px;margin:0 auto;padding:70px 28px}
+  .sec-h{font-size:clamp(40px,8vw,90px);line-height:.9}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:40px}
+  .pan{background:var(--cream);border:3px solid var(--ink);border-radius:20px;padding:24px;box-shadow:6px 6px 0 var(--ink);transition:transform .15s}
+  .pan:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink)}
+  .pan .e{font-size:42px}
+  .pan h3{font-size:24px;margin:10px 0 6px}
+  .pan p{font-weight:500;font-size:14px;color:#555}
+  .pan .p{display:inline-block;margin-top:14px;background:var(--red);color:#fff;font-family:'Archivo Black';padding:4px 12px;border-radius:8px;font-size:15px}
+  .reveal{opacity:0;transform:translateY(30px);transition:.6s}
+  .reveal.in{opacity:1;transform:none}
+  .band{background:var(--red);color:#fff;border-radius:26px;padding:64px 28px;text-align:center;margin:0 28px}
+  .band h2{font-size:clamp(36px,7vw,80px);line-height:.9}
+  .band .btn{background:#fff;color:var(--red);margin-top:24px}
+  footer{padding:36px 28px;text-align:center;font-weight:600;font-size:14px}
+  .credit{position:fixed;right:14px;bottom:12px;z-index:10;font-size:11px;color:var(--ink);background:rgba(255,255,255,.8);padding:6px 11px;border-radius:999px;text-decoration:none;border:2px solid var(--ink);font-weight:700}
+</style>
+</head>
+<body>
+  <nav>
+    <span class="logo">PANINO<b>RIBELLE</b></span>
+    <div><a href="#menu">Menù</a><a href="#dove" class="btn red" style="margin-left:22px">Dove siamo</a></div>
+  </nav>
+
+  <header>
+    <div class="em">🥪</div>
+    <h1>Panino<br/><span class="o">Ribelle</span></h1>
+    <p>Street food fuori dagli schemi. Pane artigianale, ingredienti veri, zero compromessi. 🔥</p>
+    <div class="cta">
+      <a href="#menu" class="btn red">Guarda il menù</a>
+      <a href="#dove" class="btn">Vieni a trovarci</a>
+    </div>
+  </header>
+
+  <div class="marquee"><span>🔥 PANINI RIBELLI · FRITTI CROCCANTI · BIRRE ARTIGIANALI · 🔥 PANINI RIBELLI · FRITTI CROCCANTI · BIRRE ARTIGIANALI · </span></div>
+
+  <section id="menu">
+    <div class="reveal"><h2 class="sec-h">Il Menù</h2></div>
+    <div class="grid">
+      <div class="pan reveal"><div class="e">🍔</div><h3>Il Capoclasse</h3><p>Doppio manzo, cheddar, bacon, salsa segreta</p><span class="p">€9</span></div>
+      <div class="pan reveal"><div class="e">🐔</div><h3>Pollo Fuorilegge</h3><p>Pollo fritto, slaw piccante, lime, maionese</p><span class="p">€8</span></div>
+      <div class="pan reveal"><div class="e">🌱</div><h3>Il Vegetariano</h3><p>Burger di ceci, hummus, verdure grigliate</p><span class="p">€8</span></div>
+      <div class="pan reveal"><div class="e">🥓</div><h3>Porchetta Party</h3><p>Porchetta croccante, friarielli, provola</p><span class="p">€9</span></div>
+      <div class="pan reveal"><div class="e">🍟</div><h3>Patatone Ribelli</h3><p>Patate rustiche, cheddar fuso, jalapeño</p><span class="p">€5</span></div>
+      <div class="pan reveal"><div class="e">🍺</div><h3>Birra del Mese</h3><p>Selezione artigianale alla spina</p><span class="p">€5</span></div>
+    </div>
+  </section>
+
+  <div class="band reveal" id="dove">
+    <h2>Fame da ribelle?</h2>
+    <p style="font-weight:600;margin-top:14px">Ci trovi al mercato centrale · mar–dom 12:00–23:00</p>
+    <a href="tel:+390000000000" class="btn">Ordina al telefono</a>
+  </div>
+
+  <footer>Panino Ribelle — Mercato Centrale, Napoli · Sito demo realizzato da MF Agency Lab</footer>
+  <a class="credit" href="../siti-web.html">◀ Demo · MF Agency Lab</a>
+<script>
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

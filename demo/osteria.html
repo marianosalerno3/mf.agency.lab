@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Osteria del Borgo — Cucina di territorio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#fbf4e6; --ink:#2a2118; --muted:#7c6f5d; --terra:#be4a2f; --olive:#4a5a3a; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden}
+  h1,h2,h3,.dsp{font-family:'Playfair Display',serif}
+  .deco{position:fixed;border-radius:50%;filter:blur(70px);z-index:0;opacity:.5}
+  .deco.a{width:420px;height:420px;background:#f0c98a;top:-120px;right:-80px}
+  .deco.b{width:380px;height:380px;background:#d9b9a0;bottom:-120px;left:-100px}
+  .wrap{position:relative;z-index:1}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:24px 32px}
+  .logo{font-family:'Playfair Display';font-weight:700;font-size:22px;letter-spacing:.02em}
+  nav a{color:var(--ink);text-decoration:none;font-size:14px;margin-left:24px}
+  .btn{background:var(--terra);color:#fff;padding:12px 22px;border-radius:999px;font-weight:500;font-size:14px;text-decoration:none;display:inline-block;transition:.25s}
+  .btn:hover{background:#a23d26}
+  header{text-align:center;padding:70px 24px 80px;max-width:880px;margin:0 auto}
+  .tag{color:var(--terra);letter-spacing:.28em;text-transform:uppercase;font-size:12px;font-weight:600}
+  header h1{font-size:clamp(50px,10vw,118px);line-height:.95;margin:18px 0;font-weight:700}
+  header h1 em{color:var(--terra)}
+  header p{color:var(--muted);font-size:clamp(16px,1.8vw,20px);max-width:520px;margin:0 auto;line-height:1.6}
+  .plate{font-size:clamp(70px,16vw,150px);margin:30px 0 10px;animation:bob 5s ease-in-out infinite;display:inline-block}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-14px) rotate(3deg)}}
+  .cta{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid rgba(42,33,24,.25)}
+  section{max-width:1000px;margin:0 auto;padding:80px 32px}
+  .klabel{color:var(--olive);letter-spacing:.2em;text-transform:uppercase;font-size:12px;font-weight:600;margin-bottom:14px}
+  .sec-h{font-size:clamp(34px,6vw,64px);font-weight:700;line-height:1.02}
+  .menu{margin-top:40px}
+  .dish{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:20px 0;border-bottom:1px dashed rgba(42,33,24,.2)}
+  .dish .l .n{font-family:'Playfair Display';font-size:clamp(20px,2.6vw,26px);font-weight:500}
+  .dish .l .d{color:var(--muted);font-size:14px;margin-top:4px;max-width:520px}
+  .dish .p{font-family:'Playfair Display';font-size:22px;color:var(--terra);white-space:nowrap}
+  .reveal{opacity:0;transform:translateY(28px);transition:.7s}
+  .reveal.in{opacity:1;transform:none}
+  .band{background:var(--olive);color:#f4efe2;border-radius:30px;text-align:center;padding:70px 32px;margin:0 32px}
+  .band h2{font-size:clamp(30px,5vw,56px);font-weight:700}
+  .band .btn{background:var(--terra);margin-top:24px}
+  footer{max-width:1000px;margin:0 auto;padding:50px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;color:var(--muted);font-size:14px}
+  footer b{color:var(--ink);font-family:'Playfair Display';font-weight:500;display:block;margin-bottom:8px;font-size:16px}
+  .credit{position:fixed;right:14px;bottom:12px;z-index:10;font-size:11px;color:var(--muted);background:rgba(255,255,255,.7);padding:6px 11px;border-radius:999px;text-decoration:none;border:1px solid rgba(42,33,24,.12)}
+</style>
+</head>
+<body>
+<div class="deco a"></div><div class="deco b"></div>
+<div class="wrap">
+  <nav>
+    <span class="logo">Osteria del Borgo</span>
+    <div><a href="#menu">Menù</a><a href="#storia">Storia</a><a href="#prenota" class="btn" style="margin-left:24px">Prenota</a></div>
+  </nav>
+
+  <header>
+    <span class="tag">Dal 1987 · Cucina di territorio</span>
+    <div class="plate">🍝</div>
+    <h1>Il gusto<br/>di <em>casa</em>.</h1>
+    <p>Piatti della tradizione, ingredienti del nostro orto e pasta fatta a mano ogni mattina. Nel cuore del borgo.</p>
+    <div class="cta">
+      <a href="#prenota" class="btn">Prenota un tavolo</a>
+      <a href="#menu" class="btn ghost">Scopri il menù</a>
+    </div>
+  </header>
+
+  <section id="menu">
+    <div class="reveal"><div class="klabel">Il Menù</div><h2 class="sec-h">I nostri piatti.</h2></div>
+    <div class="menu">
+      <div class="dish reveal"><div class="l"><div class="n">Tagliatelle al ragù bianco</div><div class="d">Pasta fresca, ragù di manzo brado, Parmigiano 30 mesi</div></div><div class="p">€14</div></div>
+      <div class="dish reveal"><div class="l"><div class="n">Risotto allo zafferano e ossobuco</div><div class="d">Riso Carnaroli, zafferano in pistilli, midollo</div></div><div class="p">€18</div></div>
+      <div class="dish reveal"><div class="l"><div class="n">Tagliata di Chianina</div><div class="d">Rucola, scaglie, riduzione al vino rosso</div></div><div class="p">€22</div></div>
+      <div class="dish reveal"><div class="l"><div class="n">Tiramisù della nonna</div><div class="d">Mascarpone, savoiardi, caffè della casa</div></div><div class="p">€7</div></div>
+    </div>
+  </section>
+
+  <section id="storia">
+    <div class="reveal"><div class="klabel">La Storia</div>
+    <h2 class="sec-h">Tre generazioni<br/>ai fornelli.</h2>
+    <p style="color:var(--muted);max-width:600px;margin-top:20px;font-size:17px;line-height:1.7">Dal 1987 portiamo in tavola la cucina che abbiamo imparato in famiglia. Stagionalità, materie prime locali e tanta pazienza: è questo il nostro segreto.</p></div>
+  </section>
+
+  <div class="band reveal" id="prenota">
+    <h2>Ti aspettiamo a cena.</h2>
+    <p style="opacity:.85;margin-top:14px">Aperto mar–dom · 19:30–23:00</p>
+    <a href="tel:+390000000000" class="btn">Chiama per prenotare</a>
+  </div>
+
+  <footer>
+    <div><b>Osteria del Borgo</b>Via del Mercato 12<br/>Borgo Antico (NA)</div>
+    <div><b>Orari</b>Mar–Dom 19:30–23:00<br/>Lunedì chiuso</div>
+    <div><b>Contatti</b>+39 000 000 0000<br/>ciao@osteriadelborgo.it</div>
+    <div style="align-self:end;font-size:12px">Sito demo realizzato da<br/>MF Agency Lab — 2026</div>
+  </footer>
+</div>
+<a class="credit" href="../siti-web.html">◀ Demo · MF Agency Lab</a>
+<script>
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
