@@ -375,9 +375,9 @@ function Hero() {
   return /*#__PURE__*/React.createElement("section", {
     id: "top",
     className: "relative w-full h-screen overflow-hidden bg-cream"
-  }, /*#__PURE__*/React.createElement(FadingVideo, {
-    src: "hero.mp4",
-    className: "absolute inset-0 w-full h-full object-cover object-center z-0"
+  }, /*#__PURE__*/React.createElement("canvas", {
+    id: "hero3d",
+    className: "absolute inset-0 w-full h-full z-0"
   }), /*#__PURE__*/React.createElement("div", {
     className: "absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-cream via-cream/80 to-transparent z-[1]"
   }), /*#__PURE__*/React.createElement("div", {

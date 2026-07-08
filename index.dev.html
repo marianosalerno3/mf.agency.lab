@@ -17,6 +17,12 @@
   <script src="https://unpkg.com/framer-motion@11.11.17/dist/framer-motion.js"></script>
   <script>window.Motion = window.Motion || window.FramerMotion;</script>
 
+  <!-- Hero 3D (Three.js via importmap) -->
+  <script type="importmap">
+  { "imports": { "three": "https://esm.sh/three@0.160.0" } }
+  </script>
+  <script type="module" src="hero3d.js"></script>
+
   <!-- Google Fonts: Poppins (geometric, in linea con il lettering del logo) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -301,7 +307,8 @@
       const enter = { initial: { filter: "blur(10px)", opacity: 0, y: 20 }, animate: { filter: "blur(0px)", opacity: 1, y: 0 } };
       return (
         <section id="top" className="relative w-full h-screen overflow-hidden bg-cream">
-          <FadingVideo src="hero.mp4" className="absolute inset-0 w-full h-full object-cover object-center z-0" />
+          {/* Hero 3D: laptop + smartphone (hero3d.js si aggancia a questo canvas) */}
+          <canvas id="hero3d" className="absolute inset-0 w-full h-full z-0" />
           {/* sfumatura crema in basso per leggibilità del testo */}
           <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-cream via-cream/80 to-transparent z-[1]" />
 
