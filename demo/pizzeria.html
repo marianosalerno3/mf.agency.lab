@@ -6,103 +6,117 @@
 <title>Forno Vesuvio — Pizzeria Napoletana</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
-  :root{ --bg:#fff5ec; --ink:#3a1f15; --muted:#8a6b5d; --tomato:#c8341f; --basil:#3f7d3a; }
+  :root{ --cream:#fff7ea; --ink:#2a1410; --tomato:#d2392a; --tomato2:#b32a1d; --basil:#3f7d3a; }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden}
-  h1,h2,h3,.dsp{font-family:'Fraunces',serif}
-  .deco{position:fixed;border-radius:50%;filter:blur(70px);z-index:0;opacity:.45}
-  .deco.a{width:420px;height:420px;background:#f4b9a0;top:-130px;left:-90px}
-  .deco.b{width:360px;height:360px;background:#bfe0ab;bottom:-120px;right:-90px}
-  .wrap{position:relative;z-index:1}
-  nav{display:flex;justify-content:space-between;align-items:center;padding:22px 30px}
-  .logo{font-family:'Fraunces';font-weight:700;font-size:22px}
-  .logo b{color:var(--tomato)}
-  nav a{color:var(--ink);text-decoration:none;font-size:14px;margin-left:22px;font-weight:500}
-  .btn{background:var(--tomato);color:#fff;padding:12px 22px;border-radius:999px;font-weight:600;font-size:14px;text-decoration:none;display:inline-block;transition:.25s}
-  .btn:hover{background:#a52817}
-  .btn.ghost{background:transparent;color:var(--ink);border:1px solid rgba(58,31,21,.25)}
-  header{text-align:center;padding:50px 24px 70px;max-width:900px;margin:0 auto}
-  .tag{color:var(--basil);letter-spacing:.26em;text-transform:uppercase;font-size:12px;font-weight:600}
-  .pizza{font-size:clamp(90px,20vw,190px);display:inline-block;margin:14px 0;animation:spin 18s linear infinite}
+  body{background:var(--cream);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden}
+  .dsp{font-family:'Bebas Neue',sans-serif;letter-spacing:.01em}
+  h3{font-family:'Fraunces',serif}
+  /* gingham/tovaglia a quadretti */
+  .gingham{
+    background-color:var(--tomato);
+    background-image:
+      linear-gradient(45deg, rgba(255,255,255,.18) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.18) 75%),
+      linear-gradient(45deg, rgba(255,255,255,.18) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.18) 75%);
+    background-size:44px 44px;
+    background-position:0 0, 22px 22px;
+  }
+  nav{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;color:#fff}
+  nav .logo{font-family:'Bebas Neue';font-size:30px;letter-spacing:.04em}
+  nav .links a{color:#fff;text-decoration:none;font-weight:600;font-size:14px;margin-left:22px}
+  .btn{background:var(--ink);color:var(--cream);padding:12px 22px;border-radius:999px;font-weight:700;font-size:14px;text-decoration:none;display:inline-block;transition:transform .15s}
+  .btn:hover{transform:scale(1.05)}
+  .btn.cream{background:var(--cream);color:var(--tomato)}
+  .btn.tomato{background:var(--tomato);color:#fff}
+  /* hero split */
+  .hero{display:grid;grid-template-columns:1fr 1fr;align-items:center;min-height:78vh}
+  @media(max-width:860px){.hero{grid-template-columns:1fr}}
+  .hero .copy{padding:50px 40px;color:#fff}
+  .hero .badge{display:inline-block;background:var(--cream);color:var(--tomato);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:7px 14px;border-radius:999px}
+  .hero h1{font-family:'Bebas Neue';font-size:clamp(72px,15vw,180px);line-height:.86;margin:16px 0 0;color:#fff;text-shadow:3px 3px 0 var(--tomato2)}
+  .hero h1 span{color:#ffd23f}
+  .hero p{font-size:clamp(16px,1.8vw,20px);max-width:430px;margin:18px 0 28px;opacity:.95}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero .stage{display:flex;align-items:center;justify-content:center;padding:30px;position:relative}
+  .plate{width:min(74vw,440px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 42%, #fff 0 62%, #efe4cf 63%, #e6d8bc 100%);box-shadow:0 40px 70px -30px rgba(0,0,0,.5), inset 0 0 0 14px rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center}
+  .plate .pie{font-size:min(46vw,260px);line-height:1;animation:spin 24s linear infinite;filter:drop-shadow(0 14px 18px rgba(0,0,0,.25))}
   @keyframes spin{to{transform:rotate(360deg)}}
-  header h1{font-size:clamp(52px,11vw,128px);line-height:.92;font-weight:700}
-  header h1 em{color:var(--tomato);font-style:italic}
-  header p{color:var(--muted);font-size:clamp(16px,1.8vw,20px);max-width:500px;margin:18px auto 0;line-height:1.6}
-  .cta{margin-top:28px;display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
-  section{max-width:1000px;margin:0 auto;padding:80px 30px}
-  .klabel{color:var(--tomato);letter-spacing:.2em;text-transform:uppercase;font-size:12px;font-weight:600;margin-bottom:14px}
-  .sec-h{font-size:clamp(34px,6vw,64px);font-weight:700;line-height:1.02}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:40px}
-  .pz{background:#fff;border:1px solid rgba(58,31,21,.1);border-radius:18px;padding:22px;transition:transform .2s,box-shadow .2s}
-  .pz:hover{transform:translateY(-5px);box-shadow:0 18px 40px -20px rgba(200,52,31,.4)}
+  .sticker{position:absolute;top:24px;right:24px;background:#ffd23f;color:var(--ink);font-family:'Bebas Neue';font-size:26px;width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;line-height:.9;transform:rotate(12deg);box-shadow:0 8px 0 rgba(0,0,0,.15)}
+  /* sezioni */
+  section{max-width:1080px;margin:0 auto;padding:80px 28px}
+  .sec-h{font-family:'Bebas Neue';font-size:clamp(48px,9vw,110px);line-height:.9;text-align:center;color:var(--tomato)}
+  .sub{text-align:center;color:#7a5d50;max-width:480px;margin:6px auto 0;font-size:16px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:44px}
+  .pz{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 14px 34px -22px rgba(42,20,16,.5);transition:transform .2s}
+  .pz:hover{transform:translateY(-6px)}
+  .pz .strip{height:14px}
+  .pz .body{padding:22px}
   .pz .top{display:flex;justify-content:space-between;align-items:baseline}
-  .pz h3{font-family:'Fraunces';font-size:23px;font-weight:600}
-  .pz .p{color:var(--tomato);font-family:'Fraunces';font-weight:700;font-size:20px}
-  .pz p.d{color:var(--muted);font-size:14px;margin-top:8px;line-height:1.5}
-  .reveal{opacity:0;transform:translateY(28px);transition:.7s}
+  .pz h3{font-size:23px;font-weight:500}
+  .pz .p{font-family:'Bebas Neue';font-size:26px;color:var(--tomato)}
+  .pz .d{color:#8a6f63;font-size:13.5px;margin-top:8px;line-height:1.5}
+  .reveal{opacity:0;transform:translateY(28px);transition:.6s}
   .reveal.in{opacity:1;transform:none}
-  .band{background:var(--ink);color:#fff5ec;border-radius:30px;text-align:center;padding:70px 30px;margin:0 30px;position:relative;overflow:hidden}
-  .band h2{font-size:clamp(32px,6vw,60px);font-weight:700}
-  .band .btn{margin-top:22px}
-  footer{max-width:1000px;margin:0 auto;padding:46px 30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:22px;color:var(--muted);font-size:14px}
-  footer b{color:var(--ink);font-family:'Fraunces';font-weight:600;display:block;margin-bottom:8px;font-size:16px}
-  .credit{position:fixed;right:14px;bottom:12px;z-index:10;font-size:11px;color:var(--muted);background:rgba(255,255,255,.8);padding:6px 11px;border-radius:999px;text-decoration:none;border:1px solid rgba(58,31,21,.12)}
+  .band{color:#fff;text-align:center;padding:80px 28px}
+  .band h2{font-family:'Bebas Neue';font-size:clamp(48px,10vw,120px);line-height:.85}
+  .band p{margin-top:10px;font-weight:500;opacity:.95}
+  footer{background:var(--ink);color:#d8c4ba;padding:40px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:22px;font-size:14px}
+  footer b{color:#fff;font-family:'Fraunces';display:block;margin-bottom:8px;font-size:16px}
+  .credit{position:fixed;right:14px;bottom:12px;z-index:10;font-size:11px;color:var(--ink);background:rgba(255,255,255,.85);padding:6px 11px;border-radius:999px;text-decoration:none;border:1px solid rgba(42,20,16,.15);font-weight:600}
 </style>
 </head>
 <body>
-<div class="deco a"></div><div class="deco b"></div>
-<div class="wrap">
-  <nav>
-    <span class="logo">Forno <b>Vesuvio</b></span>
-    <div><a href="#menu">Menù</a><a href="#forno">Il Forno</a><a href="#ordina" class="btn" style="margin-left:22px">Ordina</a></div>
-  </nav>
-
-  <header>
-    <span class="tag">Vera pizza napoletana · Forno a legna</span>
-    <div class="pizza">🍕</div>
-    <h1>L'arte della<br/><em>pizza</em>.</h1>
-    <p>Impasto a lunga lievitazione, San Marzano DOP e fior di latte. Cotta in 90 secondi nel forno a legna.</p>
-    <div class="cta">
-      <a href="#ordina" class="btn">Ordina ora</a>
-      <a href="#menu" class="btn ghost">Vedi il menù</a>
+  <div class="gingham">
+    <nav>
+      <span class="logo">🔥 Forno Vesuvio</span>
+      <div class="links"><a href="#menu">Menù</a><a href="#ordina" class="btn cream" style="margin-left:22px">Ordina</a></div>
+    </nav>
+    <div class="hero">
+      <div class="copy">
+        <span class="badge">Vera pizza napoletana</span>
+        <h1>L'arte<br/>della <span>pizza</span></h1>
+        <p>Impasto a 24h di lievitazione, San Marzano DOP e fior di latte. Cotta in 90 secondi nel forno a legna.</p>
+        <div class="cta">
+          <a href="#ordina" class="btn">Ordina ora</a>
+          <a href="#menu" class="btn cream">Vedi il menù</a>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="plate"><div class="pie">🍕</div></div>
+        <div class="sticker">90<br/>SEC</div>
+      </div>
     </div>
-  </header>
+  </div>
 
   <section id="menu">
-    <div class="reveal"><div class="klabel">Il Menù</div><h2 class="sec-h">Le nostre pizze.</h2></div>
+    <h2 class="sec-h reveal">Le nostre pizze</h2>
+    <p class="sub reveal">Forno a legna · 485°C · cornicione alto e arioso</p>
     <div class="grid">
-      <div class="pz reveal"><div class="top"><h3>Margherita</h3><span class="p">€6</span></div><p class="d">San Marzano DOP, fior di latte, basilico, EVO</p></div>
-      <div class="pz reveal"><div class="top"><h3>Marinara</h3><span class="p">€5</span></div><p class="d">Pomodoro, aglio, origano, basilico</p></div>
-      <div class="pz reveal"><div class="top"><h3>Diavola</h3><span class="p">€8</span></div><p class="d">Fior di latte, salame piccante, 'nduja</p></div>
-      <div class="pz reveal"><div class="top"><h3>Bufala &amp; Crudo</h3><span class="p">€11</span></div><p class="d">Mozzarella di bufala, prosciutto crudo, rucola</p></div>
-      <div class="pz reveal"><div class="top"><h3>Quattro Formaggi</h3><span class="p">€9</span></div><p class="d">Fior di latte, gorgonzola, provola, parmigiano</p></div>
-      <div class="pz reveal"><div class="top"><h3>Vesuvio</h3><span class="p">€10</span></div><p class="d">Doppio cornicione ripieno, pomodoro, bufala</p></div>
+      <div class="pz reveal"><div class="strip gingham"></div><div class="body"><div class="top"><h3>Margherita</h3><span class="p">€6</span></div><div class="d">San Marzano DOP, fior di latte, basilico, EVO</div></div></div>
+      <div class="pz reveal"><div class="strip gingham"></div><div class="body"><div class="top"><h3>Marinara</h3><span class="p">€5</span></div><div class="d">Pomodoro, aglio, origano, basilico</div></div></div>
+      <div class="pz reveal"><div class="strip gingham"></div><div class="body"><div class="top"><h3>Diavola</h3><span class="p">€8</span></div><div class="d">Fior di latte, salame piccante, 'nduja</div></div></div>
+      <div class="pz reveal"><div class="strip gingham"></div><div class="body"><div class="top"><h3>Bufala &amp; Crudo</h3><span class="p">€11</span></div><div class="d">Bufala, prosciutto crudo, rucola</div></div></div>
+      <div class="pz reveal"><div class="strip gingham"></div><div class="body"><div class="top"><h3>Quattro Formaggi</h3><span class="p">€9</span></div><div class="d">Fior di latte, gorgonzola, provola, parmigiano</div></div></div>
+      <div class="pz reveal"><div class="strip gingham"></div><div class="body"><div class="top"><h3>Vesuvio</h3><span class="p">€10</span></div><div class="d">Cornicione ripieno, pomodoro, bufala</div></div></div>
     </div>
   </section>
 
-  <section id="forno">
-    <div class="reveal"><div class="klabel">Il Forno</div>
-    <h2 class="sec-h">90 secondi<br/>a 485°C.</h2>
-    <p style="color:var(--muted);max-width:580px;margin-top:20px;font-size:17px;line-height:1.7">Il nostro forno a legna è il cuore della pizzeria. Cornicione alto e arioso, base morbida: la vera pizza napoletana, come tradizione comanda.</p></div>
-  </section>
-
-  <div class="band reveal" id="ordina">
+  <div class="band gingham reveal" id="ordina">
     <h2>Stasera, pizza.</h2>
-    <p style="opacity:.85;margin-top:14px">Asporto e domicilio · tutti i giorni 18:00–23:30</p>
-    <a href="tel:+390000000000" class="btn">Ordina al telefono</a>
+    <p>Asporto e domicilio · tutti i giorni 18:00–23:30</p>
+    <div style="margin-top:24px"><a href="tel:+390000000000" class="btn">Ordina al telefono</a></div>
   </div>
 
   <footer>
-    <div><b>Forno Vesuvio</b>Via Toledo 88<br/>Napoli</div>
-    <div><b>Orari</b>Tutti i giorni<br/>18:00–23:30</div>
+    <div><b>Forno Vesuvio</b>Via Toledo 88 · Napoli</div>
+    <div><b>Orari</b>Tutti i giorni 18:00–23:30</div>
     <div><b>Contatti</b>+39 000 000 0000<br/>ciao@fornovesuvio.it</div>
-    <div style="align-self:end;font-size:12px">Sito demo realizzato da<br/>MF Agency Lab — 2026</div>
+    <div style="align-self:end;font-size:12px">Sito demo realizzato da MF Agency Lab — 2026</div>
   </footer>
-</div>
-<a class="credit" href="../siti-web.html">◀ Demo · MF Agency Lab</a>
+
+  <a class="credit" href="../siti-web.html">◀ Demo · MF Agency Lab</a>
 <script>
   const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.14});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
