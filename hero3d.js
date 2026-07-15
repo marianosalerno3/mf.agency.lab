@@ -98,11 +98,28 @@ function init(canvas) {
     canvas.style.display = 'none';
     return;
   }
+
+  // WebGL ha funzionato: la scena 3D ha sfondo trasparente (si vedono solo
+  // laptop/telefono fluttuanti), quindi il video di fallback sotto va nascosto
+  // esplicitamente — altrimenti resterebbe visibile dietro ai dispositivi.
+  const fallbackVideo = canvas.parentElement && canvas.parentElement.querySelector('video');
+  if (fallbackVideo) {
+    fallbackVideo.style.display = 'none';
+    fallbackVideo.pause();
+  }
+
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.setSize(innerWidth, innerHeight);
   // Se il contesto WebGL viene perso a runtime (crash driver, GPU throttling),
-  // torna al video invece di lasciare il canvas bloccato su un frame vuoto.
-  canvas.addEventListener('webglcontextlost', () => { canvas.style.display = 'none'; });
+  // torna al video invece di lasciare il canvas bloccato su un frame vuoto
+  // (e senza video visibile, dato che l'abbiamo appena nascosto sopra).
+  canvas.addEventListener('webglcontextlost', () => {
+    canvas.style.display = 'none';
+    if (fallbackVideo) {
+      fallbackVideo.style.display = '';
+      const p = fallbackVideo.play(); if (p && p.catch) p.catch(() => {});
+    }
+  });
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(40, innerWidth / innerHeight, .1, 100);
