@@ -375,9 +375,12 @@ function Hero() {
   return /*#__PURE__*/React.createElement("section", {
     id: "top",
     className: "relative w-full h-screen overflow-hidden bg-cream"
-  }, /*#__PURE__*/React.createElement("canvas", {
+  }, /*#__PURE__*/React.createElement(FadingVideo, {
+    src: "hero.mp4",
+    className: "absolute inset-0 w-full h-full object-cover object-center z-0"
+  }), /*#__PURE__*/React.createElement("canvas", {
     id: "hero3d",
-    className: "absolute inset-0 w-full h-full z-0"
+    className: "absolute inset-0 w-full h-full z-[1]"
   }), /*#__PURE__*/React.createElement("div", {
     className: "absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-cream via-cream/80 to-transparent z-[1]"
   }), /*#__PURE__*/React.createElement("div", {
@@ -722,6 +725,209 @@ window.CasiStudio = CasiStudio;
 
 /* --- block 8 --- */
 (function(){
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function InstagramCarousel() {
+  const motion = window.Motion.motion;
+  const {
+    BlurText,
+    ArrowUpRight,
+    IconInstagram
+  } = window;
+  const carouselRef = React.useRef(null);
+  const posts = [{
+    id: 1,
+    img: "media/insta-1.png",
+    likes: 184,
+    comments: 24,
+    caption: "Dietro le quinte del nostro ultimo shooting video. Creiamo contenuti visivi che catturano l'attenzione.",
+    date: "10 Lug"
+  }, {
+    id: 2,
+    img: "media/insta-2.png",
+    likes: 215,
+    comments: 31,
+    caption: "Design 3D e WebGL per un'esperienza utente immersiva. Sviluppiamo siti web che lasciano il segno.",
+    date: "04 Lug"
+  }, {
+    id: 3,
+    img: "media/insta-3.png",
+    likes: 198,
+    comments: 19,
+    caption: "I dati non mentono. Campagne pubblicitarie ottimizzate per convertire e far scalare il tuo business.",
+    date: "28 Giu"
+  }, {
+    id: 4,
+    img: "media/insta-4.png",
+    likes: 242,
+    comments: 42,
+    caption: "Brainstorming creativo in ufficio. Dalla strategia alla pubblicazione, diamo forma alle tue idee.",
+    date: "22 Giu"
+  }, {
+    id: 5,
+    img: "media/insta-5.png",
+    likes: 167,
+    comments: 15,
+    caption: "Brand Identity: studiamo loghi, colori e tipografie per rendere il tuo brand unico e riconoscibile.",
+    date: "15 Giu"
+  }];
+  const scroll = direction => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const scrollAmount = 340; // width of a card + gap
+    if (direction === "left") {
+      el.scrollBy({
+        left: -scrollAmount,
+        behavior: "smooth"
+      });
+    } else {
+      el.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth"
+      });
+    }
+  };
+  const reveal = {
+    initial: {
+      opacity: 0,
+      y: 30
+    },
+    whileInView: {
+      opacity: 1,
+      y: 0
+    },
+    viewport: {
+      once: true,
+      amount: 0.2
+    }
+  };
+  return /*#__PURE__*/React.createElement("section", {
+    id: "instagram",
+    className: "bg-cream text-green py-24 md:py-32 px-6 md:px-12 border-t border-green/10"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "max-w-6xl mx-auto"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-end justify-between gap-6 mb-12"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", {
+    className: "text-sm font-medium text-green/60 mb-4"
+  }, "// Social"), /*#__PURE__*/React.createElement(BlurText, {
+    text: "Seguici su Instagram.",
+    className: "font-heading font-bold text-4xl md:text-6xl tracking-[-0.02em] leading-[1.0] max-w-3xl"
+  }), /*#__PURE__*/React.createElement("a", {
+    href: "https://www.instagram.com/mf_agencylab/",
+    target: "_blank",
+    rel: "noopener",
+    className: "inline-flex items-center gap-1.5 text-sm font-medium text-greenlt hover:opacity-75 transition-opacity mt-4"
+  }, /*#__PURE__*/React.createElement(IconInstagram, {
+    className: "h-4 w-4"
+  }), " @mf_agencylab ", /*#__PURE__*/React.createElement(ArrowUpRight, {
+    className: "h-4 w-4"
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "flex gap-2"
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => scroll("left"),
+    "aria-label": "Scorri a sinistra",
+    className: "glass hover:bg-green/5 text-green rounded-full p-3.5 transition-colors duration-300"
+  }, /*#__PURE__*/React.createElement("svg", {
+    className: "h-5 w-5 transform rotate-180",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M5 12h14M12 5l7 7-7 7"
+  }))), /*#__PURE__*/React.createElement("button", {
+    onClick: () => scroll("right"),
+    "aria-label": "Scorri a destra",
+    className: "glass hover:bg-green/5 text-green rounded-full p-3.5 transition-colors duration-300"
+  }, /*#__PURE__*/React.createElement("svg", {
+    className: "h-5 w-5",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M5 12h14M12 5l7 7-7 7"
+  }))))), /*#__PURE__*/React.createElement("div", {
+    className: "relative"
+  }, /*#__PURE__*/React.createElement("div", {
+    ref: carouselRef,
+    className: "flex gap-6 overflow-x-auto scrollbar-none pb-4 snap-x snap-mandatory",
+    style: {
+      scrollbarWidth: "none",
+      msOverflowStyle: "none"
+    }
+  }, posts.map((post, i) => /*#__PURE__*/React.createElement(motion.div, _extends({
+    key: post.id
+  }, reveal, {
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+      delay: i * 0.08
+    },
+    className: "w-[280px] sm:w-[320px] shrink-0 snap-start flex flex-col group"
+  }), /*#__PURE__*/React.createElement("a", {
+    href: "https://www.instagram.com/mf_agencylab/",
+    target: "_blank",
+    rel: "noopener",
+    className: "relative block aspect-square rounded-2xl overflow-hidden border border-green/10 bg-green/5 group-hover:border-green/20 transition-all duration-300 shadow-sm hover:shadow-md"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: post.img,
+    alt: post.caption,
+    loading: "lazy",
+    className: "w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "absolute inset-0 bg-green/45 opacity-0 group-hover:opacity-100 backdrop-blur-[3px] transition-all duration-300 flex flex-col justify-between p-6 text-cream"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex justify-end"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "glass-on-dark rounded-full p-2"
+  }, /*#__PURE__*/React.createElement(IconInstagram, {
+    className: "h-4 w-4 text-cream"
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "mt-auto"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "text-xs sm:text-sm font-light leading-relaxed line-clamp-3 mb-4"
+  }, post.caption), /*#__PURE__*/React.createElement("span", {
+    className: "inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-cream/90 hover:text-cream"
+  }, "Vedi Post ", /*#__PURE__*/React.createElement(ArrowUpRight, {
+    className: "h-3 w-3"
+  }))))), /*#__PURE__*/React.createElement("div", {
+    className: "mt-4 flex items-center justify-between text-xs text-green/60 px-1"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex gap-4"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "flex items-center gap-1"
+  }, /*#__PURE__*/React.createElement("svg", {
+    className: "h-4 w-4 fill-green/10 stroke-green/60",
+    viewBox: "0 0 24 24",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+  })), post.likes), /*#__PURE__*/React.createElement("span", {
+    className: "flex items-center gap-1"
+  }, /*#__PURE__*/React.createElement("svg", {
+    className: "h-4 w-4 fill-green/10 stroke-green/60",
+    viewBox: "0 0 24 24",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+  })), post.comments)), /*#__PURE__*/React.createElement("span", {
+    className: "font-light"
+  }, post.date))))))));
+}
+window.InstagramCarousel = InstagramCarousel;
+})();
+
+/* --- block 9 --- */
+(function(){
 function Approccio() {
   const motion = window.Motion.motion;
   const steps = [["01", "Ascolto", "Analizziamo brand, obiettivi e pubblico."], ["02", "Strategia", "Definiamo il piano di comunicazione su misura."], ["03", "Produzione", "Realizziamo contenuti, siti e campagne."], ["04", "Crescita", "Misuriamo i risultati e ottimizziamo nel tempo."]];
@@ -762,7 +968,7 @@ function Approccio() {
 window.Approccio = Approccio;
 })();
 
-/* --- block 9 --- */
+/* --- block 10 --- */
 (function(){
 // Web3Forms: chiave gratuita da https://web3forms.com (usa la tua email
 // mf.agency.lab@gmail.com). Incolla qui la access key per ricevere le
@@ -992,19 +1198,20 @@ function Contatti() {
 window.Contatti = Contatti;
 })();
 
-/* --- block 10 --- */
+/* --- block 11 --- */
 (function(){
 function App() {
   const {
     Hero,
     Servizi,
     CasiStudio,
+    InstagramCarousel,
     Approccio,
     Contatti
   } = window;
   return /*#__PURE__*/React.createElement("div", {
     className: "bg-cream"
-  }, /*#__PURE__*/React.createElement(Hero, null), /*#__PURE__*/React.createElement(Servizi, null), /*#__PURE__*/React.createElement(CasiStudio, null), /*#__PURE__*/React.createElement(Approccio, null), /*#__PURE__*/React.createElement(Contatti, null));
+  }, /*#__PURE__*/React.createElement(Hero, null), /*#__PURE__*/React.createElement(Servizi, null), /*#__PURE__*/React.createElement(CasiStudio, null), /*#__PURE__*/React.createElement(InstagramCarousel, null), /*#__PURE__*/React.createElement(Approccio, null), /*#__PURE__*/React.createElement(Contatti, null));
 }
 ReactDOM.createRoot(document.getElementById("root")).render(/*#__PURE__*/React.createElement(App, null));
 })();

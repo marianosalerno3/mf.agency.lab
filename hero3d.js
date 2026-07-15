@@ -72,10 +72,37 @@ function softShadow(w) {
   return m;
 }
 
+// Alcuni browser/ambienti hanno WebGL disabilitato (accelerazione hardware
+// spenta, driver bloccato, sandbox aziendale, sessioni remote/VM). In quel
+// caso NON montiamo la scena 3D: il canvas resta nascosto e il video di
+// fallback sotto rimane visibile, invece di lasciare l'hero vuoto.
+function webglAvailable() {
+  try {
+    const test = document.createElement('canvas');
+    return !!(test.getContext('webgl2') || test.getContext('webgl') || test.getContext('experimental-webgl'));
+  } catch (e) {
+    return false;
+  }
+}
+
 function init(canvas) {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  if (!webglAvailable()) {
+    canvas.style.display = 'none';
+    return;
+  }
+
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  } catch (e) {
+    canvas.style.display = 'none';
+    return;
+  }
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.setSize(innerWidth, innerHeight);
+  // Se il contesto WebGL viene perso a runtime (crash driver, GPU throttling),
+  // torna al video invece di lasciare il canvas bloccato su un frame vuoto.
+  canvas.addEventListener('webglcontextlost', () => { canvas.style.display = 'none'; });
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(40, innerWidth / innerHeight, .1, 100);
@@ -181,7 +208,10 @@ function init(canvas) {
 // il canvas è renderizzato da React: attendi che compaia
 (function waitForCanvas(tries) {
   const cv = document.getElementById('hero3d');
-  if (cv) return init(cv);
+  if (cv) {
+    try { init(cv); } catch (e) { cv.style.display = 'none'; }
+    return;
+  }
   if (tries > 200) return;
   setTimeout(() => waitForCanvas((tries || 0) + 1), 50);
 })(0);

@@ -22,34 +22,14 @@
   <!-- Favicon (monogramma MF) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%232E3A23'/%3E%3Ctext x='50' y='64' font-family='Poppins,Arial,sans-serif' font-size='44' font-weight='800' fill='%23FBEFD3' text-anchor='middle'%3EMF%3C/text%3E%3C/svg%3E" />
 
-  <!-- Google Fonts: Poppins -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind precompilato (solo classi usate) -->
+  <!-- Tailwind -->
   <link rel="stylesheet" href="tailwind.css" />
 
-  <!-- Stili custom (liquid-glass del brand) -->
-  <style>
-    html, body { background: #FBEFD3; margin: 0; }
-    .glass {
-      background: rgba(46, 58, 35, 0.05);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(46, 58, 35, 0.14);
-    }
-    .glass-on-dark {
-      background: rgba(251, 239, 211, 0.06);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(251, 239, 211, 0.18);
-    }
-  </style>
-
-  <!-- React (build di produzione) + Framer Motion -->
+  <!-- React + ReactDOM + Babel -->
   <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+
+  <!-- Framer Motion (UMD global is `Motion`) -->
   <script src="https://unpkg.com/framer-motion@11.11.17/dist/framer-motion.js"></script>
   <script>window.Motion = window.Motion || window.FramerMotion;</script>
 
@@ -58,6 +38,30 @@
   { "imports": { "three": "https://esm.sh/three@0.160.0" } }
   </script>
   <script type="module" src="hero3d.js"></script>
+
+  <!-- Google Fonts: Poppins (geometric, in linea con il lettering del logo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    html, body { background: #FBEFD3; margin: 0; }
+
+    /* Glass su superfici chiare (crema) — tinta verde */
+    .glass {
+      background: rgba(46, 58, 35, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(46, 58, 35, 0.14);
+    }
+    /* Glass su superfici scure (verde) — tinta crema */
+    .glass-on-dark {
+      background: rgba(251, 239, 211, 0.06);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(251, 239, 211, 0.18);
+    }
+  </style>
 
   <!-- Meta Pixel Code -->
   <script>
@@ -79,6 +83,31 @@
 </head>
 <body class="bg-cream font-body text-green antialiased">
   <div id="root"></div>
+
+  <!-- Icons -->
+
+  <!-- FadingVideo (crossfade rAF) -->
+
+  <!-- BlurText -->
+
+  <!-- Brand logo mark -->
+
+  <!-- Navbar -->
+
+  <!-- Hero -->
+
+  <!-- Servizi (sezione verde) -->
+
+  <!-- Casi Studio (sezione crema) -->
+
+  <!-- Instagram Carousel (sezione crema) -->
+
+  <!-- Approccio (fascia verde compatta) -->
+
+  <!-- Contatti + Footer -->
+
+  <!-- App -->
+  
   <script src="app.js"></script>
 </body>
 </html>
